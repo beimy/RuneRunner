@@ -4,23 +4,24 @@ using UnityEngine;
 
 public class GridTile : MonoBehaviour
 {
-
+    public enum TileStatus { Open, Occupied, Raised };
+    public TileStatus myTileStatus;
+  
     public class Tile
     {
+        [SerializeField]
         enum TileStatus { Open, Occupied, Raised };
-
-
+        GameObject OccupyingObject;
 
     }
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
-        
+        myTileStatus = TileStatus.Open;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OccupyTile()
     {
-        
+        myTileStatus = TileStatus.Occupied;
     }
 }

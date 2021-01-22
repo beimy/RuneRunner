@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,11 +10,17 @@ public class PlayerController : MonoBehaviour
     public Camera camera;
     public List<GameObject> myPlayerChars;
     public GameObject myPlayerCharSelected;
+    public GameObject UI_characterSelected;
+    public Canvas myUICanvas;
+    private EventSystem eventSystem;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        myUICanvas = GetComponent<Canvas>();
+        camera = GetComponent<Camera>();
+        eventSystem = GetComponent<EventSystem>();
     }
 
     // Update is called once per frame
@@ -58,10 +66,10 @@ public class PlayerController : MonoBehaviour
     void ObjectCheck(GameObject objectHitByRayCast)
     {
         //check if object clicked is a tile
-        if (objectHitByRayCast.CompareTag("Tile"))
-        {
-            MoveCharacter(objectHitByRayCast);
-        }
+        //if (objectHitByRayCast.CompareTag("Tile"))
+        //{
+        //    MoveCharacter(objectHitByRayCast);
+        //}
 
         //check if the object clicked is a player's character
         if (objectHitByRayCast.CompareTag("PlayerCharacter"))
@@ -69,13 +77,15 @@ public class PlayerController : MonoBehaviour
             //Color oldColor =  objectHitByRayCast.GetComponent<Renderer>().material.color;
             //objectHitByRayCast.GetComponent<Renderer>().material.color = Color.green;
 
+            myPlayerCharSelected = objectHitByRayCast;
             PlayerCharacterSelected();
         }
     }
 
     void PlayerCharacterSelected()
     {
-        GameObject UI_characterHighlighted = Instantiate(Charact, )
+        GameObject my_UI_characterSelected = Instantiate(UI_characterSelected, );
+        my_UI_characterSelected.SetActive(true);
     }
 
     //Move player's character to a new tile

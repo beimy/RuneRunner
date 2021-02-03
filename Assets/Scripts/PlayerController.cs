@@ -13,14 +13,17 @@ public class PlayerController : MonoBehaviour
     public GameObject UI_characterSelected;
     public Canvas myUICanvas;
     private EventSystem eventSystem;
-    
+
+
+
 
     // Start is called before the first frame update
     void Start()
     {
-        myUICanvas = GetComponent<Canvas>();
-        camera = GetComponent<Camera>();
+        //myUICanvas = GetComponent<Canvas>();
+        //camera = GetComponent<Camera>();
         eventSystem = GetComponent<EventSystem>();
+
     }
 
     // Update is called once per frame
@@ -84,7 +87,11 @@ public class PlayerController : MonoBehaviour
 
     void PlayerCharacterSelected()
     {
-        GameObject my_UI_characterSelected = Instantiate(UI_characterSelected, );
+        Debug.Log("PlayerCharSelected Method Entered");
+
+        GameObject my_UI_characterSelected = Instantiate(UI_characterSelected);
+        my_UI_characterSelected.transform.SetParent(myUICanvas.transform, true);
+        
         my_UI_characterSelected.SetActive(true);
     }
 

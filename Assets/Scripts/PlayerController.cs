@@ -12,12 +12,13 @@ public class PlayerController : MonoBehaviour
     public GameObject myPlayerCharSelected;
     public GameObject UI_characterSelected;
     public Canvas myUICanvas;
+
+
     private EventSystem eventSystem;
 
 
 
-
-    // Start is called before the first frame update
+   
     void Start()
     {
         //myUICanvas = GetComponent<Canvas>();
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -81,24 +82,31 @@ public class PlayerController : MonoBehaviour
             //objectHitByRayCast.GetComponent<Renderer>().material.color = Color.green;
 
             myPlayerCharSelected = objectHitByRayCast;
-            PlayerCharacterSelected();
+            PlayerCharacterSelected(objectHitByRayCast);
         }
     }
 
-    void PlayerCharacterSelected()
+    void PlayerCharacterSelected(GameObject PC_Selected)
     {
         Debug.Log("PlayerCharSelected Method Entered");
 
+        //Highlight selected character
+        PC_Selected.GetComponent<PlayerCharacter_S>().Highlight();
+
+        //Create and draw UI menu, set reference to this PC for dehighlighting
         GameObject my_UI_characterSelected = Instantiate(UI_characterSelected);
         my_UI_characterSelected.transform.SetParent(myUICanvas.transform, true);
-        
+        my_UI_characterSelected.GetComponent<CloseUIElement>().myPC = PC_Selected;
+
+
         my_UI_characterSelected.SetActive(true);
     }
 
     //Move player's character to a new tile
     public void MoveCharacter(GameObject tileHit)
     {
-        myPlayerCharSelected.transform.position = ((tileHit.transform.position + new Vector3(0, 1, 0)));
+       //myPlayerCharSelected.transform.position = ((tileHit.transform.position + new Vector3(0, 1, 0)));
+
     }
 
     public void MoveOptionSelected()

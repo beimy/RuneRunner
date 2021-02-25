@@ -8,17 +8,14 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     public Camera camera;
-    public List<GameObject> myPlayerChars;
-    public GameObject myPlayerCharSelected;
-    public GameObject UI_characterSelected;
+    public List<PlayerChar> myPlayerChars;
+    public PlayerChar myPlayerCharSelected;
+    public PlayerChar UI_characterSelected;
     public Canvas myUICanvas;
-
+    public bool UIOpen = false;
 
     private EventSystem eventSystem;
 
-
-
-   
     void Start()
     {
         //myUICanvas = GetComponent<Canvas>();
@@ -30,7 +27,7 @@ public class PlayerController : MonoBehaviour
    
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !UIOpen)
         {
             OnClick();
             Debug.Log("Mouse Clicked");
@@ -51,13 +48,12 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             Transform objectHit = hit.transform;
-            
+          
             // Do something with the object that was hit by the raycast.
             Debug.Log("object hit = " + hit.collider.gameObject.name as string);
 
             ObjectCheck(hit.collider.gameObject);
 
-            //MoveCharacter(hit.collider.gameObject);
         }
     }
 
@@ -78,8 +74,6 @@ public class PlayerController : MonoBehaviour
         //check if the object clicked is a player's character
         if (objectHitByRayCast.CompareTag("PlayerCharacter"))
         {
-            //Color oldColor =  objectHitByRayCast.GetComponent<Renderer>().material.color;
-            //objectHitByRayCast.GetComponent<Renderer>().material.color = Color.green;
 
             myPlayerCharSelected = objectHitByRayCast;
             PlayerCharacterSelected(objectHitByRayCast);
@@ -92,26 +86,16 @@ public class PlayerController : MonoBehaviour
 
         //Highlight selected character
         PC_Selected.GetComponent<PlayerCharacter_S>().Highlight();
+        PC_Selected = myPlayerCharSelected;
 
         //Create and draw UI menu, set reference to this PC for dehighlighting
         GameObject my_UI_characterSelected = Instantiate(UI_characterSelected);
         my_UI_characterSelected.transform.SetParent(myUICanvas.transform, true);
-        my_UI_characterSelected.GetComponent<CloseUIElement>().myPC = PC_Selected;
 
+        
 
         my_UI_characterSelected.SetActive(true);
-    }
-
-    //Move player's character to a new tile
-    public void MoveCharacter(GameObject tileHit)
-    {
-       //myPlayerCharSelected.transform.position = ((tileHit.transform.position + new Vector3(0, 1, 0)));
-
-    }
-
-    public void MoveOptionSelected()
-    {
-
+        UIOpen = true;
     }
 
 

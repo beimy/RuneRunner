@@ -120,9 +120,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6318343312558581109, guid: f107c7c666b39134d90e9517724800b8, type: 3}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: MoveCharacter
+      - m_Target: {fileID: -422068477911686388}
+        m_TargetAssemblyTypeName: UI_UnitSelected, Assembly-CSharp
+        m_MethodName: MoveMyUnit
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 6603134590777308442}
   - component: {fileID: 1801064718893435079}
   - component: {fileID: 44551267987520200}
-  - component: {fileID: 579909243817674500}
+  - component: {fileID: -422068477911686388}
   m_Layer: 5
   m_Name: CharacterHighlighted
   m_TagString: Untagged
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &579909243817674500
+--- !u!114 &-422068477911686388
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -298,9 +298,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7328282678928283132}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edd640df3898a854a92b69459307f896, type: 3}
+  m_Script: {fileID: 11500000, guid: ec41cb1fbdf5672409098d5dbcf9affc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myUnit: {fileID: 0}
 --- !u!1 &8574176783106954882
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +421,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 579909243817674500}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CloseUIElement, Assembly-CSharp
         m_MethodName: CloseMe
         m_Mode: 1
